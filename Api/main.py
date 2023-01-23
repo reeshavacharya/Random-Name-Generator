@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import namegetter
+from namegetter import nameGetter
 import countries
 import genders
 
@@ -21,23 +21,19 @@ app.add_middleware(
 
 @app.get("/name")
 async def generate_name():
- name= namegetter.get_name(None)
+ name= nameGetter.get_name(None)
  return name  
 
 @app.get("/name/{gender}")
 async def generate_name(gender):
-    name= namegetter.get_name(gender)
+    name= nameGetter.get_name(gender)
     return name  
 
 @app.get("/name/{gender}/{country}")
 async def generate_name(gender,country):   
-        name= namegetter.get_name_with_country(gender,country)
+        name= nameGetter.get_name_with_country(gender,country)
         return name
-
-@app.get("name/gender/{country}")
-async def generate_name(country):
-    name=namegetter.get_name_withoutGender(country)
-    return name     
+     
 
 @app.get("/countries")
 async def generate_countries():

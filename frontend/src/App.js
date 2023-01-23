@@ -14,7 +14,7 @@ function App() {
     try {
       if (gender == "" && country != "") {
         const response = await axios.get(
-          `http://127.0.0.1:8000/name/gender/${country}`
+          `http://127.0.0.1:8000/name/noGender/${country}`
         );
         return response.data;
       } else {
@@ -85,7 +85,8 @@ function App() {
       <button onClick={handleClick}>Generate</button>
       <div>
         <br></br>
-        <h2 id='randomName'></h2>
+        <br></br>
+        <h2 id='randomName' className='h2'></h2>
       </div>
     </div>
   );
