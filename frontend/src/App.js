@@ -12,17 +12,16 @@ function App() {
 
   const fetchData = async (gender, country) => {
     try {
-      if (gender == "" && country != "") {
-        const response = await axios.get(
-          `http://127.0.0.1:8000/name/noGender/${country}`
-        );
-        return response.data;
-      } else {
-        const response = await axios.get(
-          `http://127.0.0.1:8000/name/${gender}/${country}`
-        );
-        return response.data;
+      let url = `http://127.0.0.1:8000/name`;
+      if (gender !== "" && country !== "") {
+        url = `http://127.0.0.1:8000/name?gender=${gender}&country=${country}`;
+      } else if (gender !== "") {
+        url = `http://127.0.0.1:8000/name?gender=${gender}`;
+      } else if (country !== "") {
+        url = `http://127.0.0.1:8000/name?country=${country}`;
       }
+      const response = await axios.get(url);
+      return response.data;
     } catch (error) {
       console.error(error);
     }
